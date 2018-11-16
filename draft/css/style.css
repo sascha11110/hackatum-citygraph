@@ -1,0 +1,44 @@
+/* open-sans-regular - latin */
+@font-face {
+  font-family: 'Open Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../fonts/open-sans-v15-latin-regular.eot');
+  /* IE9 Compat Modes */
+  src: local('Open Sans Regular'), local('OpenSans-Regular'), url('../fonts/open-sans-v15-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */ url('../fonts/open-sans-v15-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */ url('../fonts/open-sans-v15-latin-regular.woff') format('woff'), /* Modern Browsers */ url('../fonts/open-sans-v15-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */ url('../fonts/open-sans-v15-latin-regular.svg#OpenSans') format('svg');
+  /* Legacy iOS */
+}
+html,
+body {
+  font-family: 'Open Sans', sans-serif;
+  width: 100%;
+  min-height: 100vH;
+  margin: 0;
+  background-color: #1b98d5;
+}
+#timeline {
+  left: 40px;
+  height: 100%;
+  min-height: 250px;
+}
+#line {
+  width: 4px;
+  background-color: #ffe400;
+}
+.dot {
+  width: 22px;
+  height: 22px;
+  top: 20px;
+  left: -9px;
+  border-radius: 100%;
+  background-color: #1b98d5;
+}
+.dot > div {
+  width: 13px;
+  height: 13px;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  border-radius: 100%;
+  background-color: #ffe400;
+}
