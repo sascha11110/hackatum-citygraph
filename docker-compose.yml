@@ -18,7 +18,7 @@ services:
       - DB_DATABASE=hackatum
       - DB_USER=hackatum
       - DB_PASSWORD=test
-      - DB_HOST=postgres
-      - DB_PORT=5432
+      - DB_HOST=couchdb
+      - DB_PORT=5984
     volumes:
       - './code:/code'
