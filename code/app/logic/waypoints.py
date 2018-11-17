@@ -48,7 +48,7 @@ def assemble_waypoints(proposal):
             last = True
             icon = 'book'
  
-        rf = 'https://makroskop.eu'
+        rf = ''
         if 'resolution_file' in result:
             rf = result['resolution_file']
 
