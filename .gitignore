@@ -1,6 +1,9 @@
 # IDE
 /.vscode/
 
+# data
+code/app/static/data/
+
 # pycache
 *.pyc
 *__pycache__*
