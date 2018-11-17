@@ -1,10 +1,31 @@
 {% extends "base.html" %}
 {% block content %}
+
     <div id="wrapper" class="w-full py-10 px-6">
-        <ul>
-            <li>
-                <a href="/proposal" class="text-white">Sample proposal</a>
-            </li>
-        </ul>
+        <form class="w-full">
+            <input type="search" placeholder="Antrag suchen..." class="shadow bg-white px-5 py-4 rounded-sm w-full bg-transparent" />
+            <input type="submit" class="hidden" />
+        </form>
+
+        {% if proposals %}
+        <div class="mt-8 rounded-sm shadow overflow-hidden" style="">
+            <table class="listing">
+                {% for p in proposals %}
+                    <tr>
+                        <td width="100%">
+                            <a href="" class="block p-3 text-grey-darkest no-underline">
+                                {{p['subject']}}
+                            </a>
+                        </td>
+                        <td>
+                            <a href="" class="text-grey-darkest block p-3">
+                                <i data-feather="chevrons-right"></i>
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        {% endif %}
     </div>
 {% endblock %}

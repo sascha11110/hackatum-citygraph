@@ -16,8 +16,5 @@ services:
     depends_on:
       - mongo
     restart: always
-    environment:
-      - COUCHDB_SERVER='http://couchdb:5984/',
-      - COUCHDB_DATABASE='hackatum'
     volumes:
       - './code:/code'

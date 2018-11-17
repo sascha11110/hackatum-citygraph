@@ -11,12 +11,17 @@
 html,
 body {
   font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
   width: 100%;
   min-height: 100vH;
   margin: 0;
   background-color: #1b98d5;
 }
-input[type=search] {
+#wrapper {
+  max-width: 600px;
+  margin: 0 auto;
+}
+.search_timeline input[type=search] {
   margin-top: 3px;
 }
 #timeline {
@@ -88,4 +93,10 @@ input[type=search] {
 #limit {
   width: 185px;
   left: 8px;
+}
+table.listing tr {
+  background-color: #ffffff;
+}
+table.listing tr:nth-child(odd) {
+  background-color: #ffe400;
 }
