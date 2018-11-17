@@ -99,7 +99,8 @@ def get_proposal_results(id):
 		else:
 			setting_date = re.findall('ba_sitzungen_details.jsp\?Id=([0-9]+)" target="_blank">([0-9]{2}\.[0-9]{2}\.[0-9]{4}), ([0-9]{2}:[0-9]{2})</a>', cols[1], re.S)[0]
 		template = re.findall('ris_vorlagen_detail.jsp\?risid=([0-9]+)">(.*?)</a>', cols[3], re.S)[0]
-		resolution_file = re.findall('href="/RII/RII/DOK/TOP/([0-9]+)\.pdf"', cols[3], re.S)[0]
+		if len(resolution_file) > 0:
+    		resolution_file = re.findall('href="/RII/RII/DOK/TOP/([0-9]+)\.pdf"', cols[3], re.S)[0]
 		results.append({
 			'committee_id': gremium[0],
 			'committee_legislative_period': gremium[1],
