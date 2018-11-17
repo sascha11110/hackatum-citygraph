@@ -8,6 +8,7 @@ from app import APP_STATIC
 from app.logic.waypoints import assemble_waypoints
 from app.logic.waypoints import status_color
 from app.logic.waypoints import type_info
+from app.logic.proposals import prepare_proposals
 from pymongo import TEXT
 from bson.objectid import ObjectId
 
@@ -25,6 +26,7 @@ def index():
         proposals = list(mongo.db.proposals.find(
             {'$text': {'$search': search}}
         ))
+        proposals = prepare_proposals(proposals)
 
     return render_template('index.html',
                            proposals=proposals,

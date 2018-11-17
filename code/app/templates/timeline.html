@@ -58,6 +58,11 @@
                                         {{waypoint['title']}}
                                     </h4>
                                     {{waypoint['text']}}
+                                    {% if waypoint['document'] %}
+                                        <a href="{{waypoint['document']}}" class="inline-block mt-2">
+                                            &raquo; zum zugehörigen Dokument
+                                        </a>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>

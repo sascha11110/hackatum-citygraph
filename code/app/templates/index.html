@@ -17,13 +17,18 @@
             <table class="listing">
                 {% for p in proposals %}
                     <tr>
-                        <td width="100%">
+                        <td width="30px">
+                            <a href="/proposal/{{p['_id']}}" class="block p-3 text-grey-darkest no-underline" style="height:51px;">
+                                <i data-feather="{{p['icon']}}"></i>
+                            </a>
+                        </td>
+                        <td>
                             <a href="/proposal/{{p['_id']}}" class="block p-3 text-grey-darkest no-underline">
                                 {{p['type']}}:
                                 {{p['subject']}}
                             </a>
                         </td>
-                        <td>
+                        <td width="51px">
                             <a href="/proposal/{{p['_id']}}" class="text-grey-darkest block p-3">
                                 <i data-feather="chevrons-right"></i>
                             </a>

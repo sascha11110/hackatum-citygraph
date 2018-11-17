@@ -1,6 +1,18 @@
 from datetime import datetime
 
 
+switcher_icon = {
+    'Antrag': 'book-open',
+    'Anfrage': 'file-text',
+    'Aenderungsantrag': 'edit',
+    'Ergaenzungsantrag': 'file-plus',
+    'Dringlichkeitsantrag': 'chevrons-right',
+    'Nachpruefungsantrag': 'check-square',
+    'Fragestunde': 'help-circle',
+    'Aktuelle Stunde': 'grid',
+}
+
+
 def assemble_waypoints(proposal):
     results = proposal['results']
 
@@ -8,13 +20,18 @@ def assemble_waypoints(proposal):
     if len(results) <= 0:
         last = True
 
+    text = ''
+    if proposal['initiator']:
+        text = 'Initiatoren: ' + proposal['initiator']
+
     waypoints = []
     ti = type_info(proposal)
     waypoints.append({'date': proposal['date'],
                       'icon': ti['icon'],
                       'title': ti['text'],
-                      'text': '',
-                      'last': last})
+                      'text': text,
+                      'last': last,
+                      'document': ''})
 
     i = 0
     for result in results:
@@ -35,7 +52,8 @@ def assemble_waypoints(proposal):
                           'icon': icon,
                           'title': title,
                           'text': result['result_description'],
-                          'last': last})
+                          'last': last,
+                          'document': ''})  # result['resolution_file']
 
     return waypoints
 
@@ -58,17 +76,6 @@ def status_color(proposal):
 
 def type_info(proposal):
     proposal_type = proposal['type']
-
-    switcher_icon = {
-        'Antrag': 'book-open',
-        'Anfrage': 'file-text',
-        'Aenderungsantrag': 'edit',
-        'Ergaenzungsantrag': 'file-plus',
-        'Dringlichkeitsantrag': 'chevrons-right',
-        'Nachpruefungsantrag': 'check-square',
-        'Fragestunde': 'help-circle',
-        'Aktuelle Stunde': 'grid',
-    }
 
     switcher_text = {
         'Antrag': 'Antrag gestellt',
