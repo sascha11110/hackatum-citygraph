@@ -38,7 +38,7 @@
                 <div class="w-full" style="height:20px;"></div>
 
                 {% for waypoint in waypoints %}
-                    <div class="waypoint flex flex-wrap z-50 mb-16">
+                    <div class="waypoint flex flex-wrap z-50">
                         <div class="date-dot">
                             <div class="date absolute text-white text-sm font-bold">
                                 {{waypoint['date']}}
@@ -59,7 +59,7 @@
                                     </h4>
                                     {{waypoint['text']}}
                                     {% if waypoint['document'] %}
-                                        <a href="{{waypoint['document']}}" class="inline-block mt-2">
+                                        <a href="{{waypoint['document']}}" class="inline-block mt-2 text-grey-darker" target="_blank">
                                             &raquo; zum zugehörigen Dokument
                                         </a>
                                     {% endif %}
@@ -67,6 +67,8 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="w-full" style="height: 4rem;"></div>
                 {% endfor %}
 
                 <div id="limit" class="absolute pin-b z-50">

@@ -47,13 +47,17 @@ def assemble_waypoints(proposal):
         if i >= len(results):
             last = True
             icon = 'book'
+ 
+        rf = 'https://makroskop.eu'
+        if 'resolution_file' in result:
+            rf = result['resolution_file']
 
         waypoints.append({'date': result['result_time'],
                           'icon': icon,
                           'title': title,
                           'text': result['result_description'],
                           'last': last,
-                          'document': ''})  # result['resolution_file']
+                          'document': rf})
 
     return waypoints
 
