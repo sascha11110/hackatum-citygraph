@@ -1,24 +1,30 @@
 {% extends "base.html" %}
 {% block content %}
+    <header class="pt-10 text-center">
+        <a href="/">
+            <img src="../static/images/logo.png" style="max-width: 200px;" />
+        </a>
+    </header>
 
     <div id="wrapper" class="w-full py-10 px-6">
-        <form class="w-full">
-            <input type="search" placeholder="Antrag suchen..." class="shadow bg-white px-5 py-4 rounded-sm w-full bg-transparent" />
+        <form method="get" class="w-full">
+            <input type="search" name="search" placeholder="Antrag suchen..." class="shadow bg-white px-5 py-4 rounded-sm w-full bg-transparent"{% if search %} value="{{search}}"{% endif %} />
             <input type="submit" class="hidden" />
         </form>
 
         {% if proposals %}
-        <div class="mt-8 rounded-sm shadow overflow-hidden" style="">
+        <div class="mt-8 rounded-sm shadow overflow-hidden">
             <table class="listing">
                 {% for p in proposals %}
                     <tr>
                         <td width="100%">
-                            <a href="" class="block p-3 text-grey-darkest no-underline">
+                            <a href="/proposal/{{p['_id']}}" class="block p-3 text-grey-darkest no-underline">
+                                {{p['type']}}:
                                 {{p['subject']}}
                             </a>
                         </td>
                         <td>
-                            <a href="" class="text-grey-darkest block p-3">
+                            <a href="/proposal/{{p['_id']}}" class="text-grey-darkest block p-3">
                                 <i data-feather="chevrons-right"></i>
                             </a>
                         </td>
@@ -26,6 +32,12 @@
                 {% endfor %}
             </table>
         </div>
+        {% else %}
+            {% if searched %}
+                <div class="text-white mt-8">
+                    Keine Anträge gefunden.
+                </div>
+            {% endif %}
         {% endif %}
     </div>
 {% endblock %}

@@ -5,97 +5,87 @@
             <i data-feather="arrow-left"></i>
         </a>
         <div class="text-white flex-1">
-            <form class="w-full search_timeline">
-                <input type="search" placeholder="Suchen..." class="w-full p-6 bg-transparent text-white" />
+            <form method="get" action="/" class="w-full search_timeline">
+                <input type="search" name="search" placeholder="Antrag suchen..." class="w-full p-6 bg-transparent text-white" />
             </form>
         </div>
     </header>
 
     <div id="wrapper" class="w-full pt-2 pb-10 px-6">
         <div class="text-center mb-8">
-            <h2 class="mb-2 text-white">Lückenschluss durch Überweg</h2>
-            <h4 class="text-white">Antrags-Nummer: 14-20 / A 04658</h4>
+            <div class="text-white big-icon">
+                <i data-feather="{{ti['icon']}}"></i>
+            </div>
+            <h2 class="mb-2 text-white">
+                {{proposal['type']}}:
+                {{proposal['subject']}}
+            </h2>
+            <h4 class="text-white font-normal">
+                {{proposal['department']}}
+            </h4>
         </div>
 
         <div class="mb-8 text-center">
-            <span class="rounded-full bg-grey-light uppercase px-4 py-2 font-bold inline-block">Offener Antrag</span>
+            <span class="rounded-full bg-grey-light uppercase px-4 py-2 font-bold inline-block bg-{{sc['bg']}} text-{{sc['text']}}">
+                {{proposal['status']}}
+            </span>
         </div>
 
         <div id="timeline" class="relative">
             <div id="line" class="absolute z-10 pin-t pin-b"></div>
 
-            <div id="waypoints" class="pb-8">
-                <div class="waypoint flex flex-wrap z-50 mb-20">
-                    <div class="date-dot">
-                        <div class="date absolute text-white text-sm font-bold">
-                            08 Feb 2014
-                        </div>
-                        <div class="dot absolute">
-                            <div></div>
-                        </div>
-                    </div>
-                    <div class="arrow-bubble relative">
-                        <div class="arrow absolute z-20 bg-white"></div>
-                        <div class="bubble z-30 rounded bg-white p-3 flex flex-wrap">
-                            <div class="icon">
-                                <i data-feather="book-open"></i>
+            <div id="waypoints">
+                <div class="w-full" style="height:20px;"></div>
+
+                {% for waypoint in waypoints %}
+                    <div class="waypoint flex flex-wrap z-50 mb-16">
+                        <div class="date-dot">
+                            <div class="date absolute text-white text-sm font-bold">
+                                {{waypoint['date']}}
                             </div>
-                            <div class="flex-1">
-                                <h4 class="mb-2">Antrag gestellt</h4>
-                                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt.
+                            <div class="dot absolute z-50">
+                                <div></div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="waypoint flex flex-wrap z-50 mb-20">
-                    <div class="date-dot">
-                        <div class="date absolute text-white text-sm font-bold">
-                            08 Feb 2014
-                        </div>
-                        <div class="dot absolute">
-                            <div></div>
-                        </div>
-                    </div>
-                    <div class="arrow-bubble relative">
-                        <div class="arrow absolute z-20 bg-white"></div>
-                        <div class="bubble z-30 rounded bg-white p-3 flex flex-wrap">
-                            <div class="icon">
-                                <i data-feather="send"></i>
-                            </div>
-                            <div class="flex-1">
-                                <h4 class="mb-2">Antrag weitergeleitet</h4>
-                                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt.
+                        <div class="arrow-bubble relative">
+                            <div class="arrow absolute z-20 bg-white"></div>
+                            <div class="bubble z-30 rounded bg-white p-3 flex flex-wrap">
+                                <div class="icon">
+                                    <i data-feather="{{waypoint['icon']}}"></i>
+                                </div>
+                                <div class="flex-1" style="padding-left: 8px;">
+                                    <h4 class="{% if waypoint['text'] %} mb-2{% endif %}" style="margin-top:3px;">
+                                        {{waypoint['title']}}
+                                    </h4>
+                                    {{waypoint['text']}}
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="waypoint flex flex-wrap z-50 mb-20">
-                    <div class="date-dot">
-                        <div class="date absolute text-white text-sm font-bold">
-                            08 Feb 2014
-                        </div>
-                        <div class="dot absolute">
-                            <div></div>
-                        </div>
-                    </div>
-                    <div class="arrow-bubble relative">
-                        <div class="arrow absolute z-20 bg-white"></div>
-                        <div class="bubble z-30 rounded bg-white p-3 flex flex-wrap">
-                            <div class="icon">
-                                <i data-feather="chevrons-right"></i>
-                            </div>
-                            <div class="flex-1">
-                                <h4 class="mb-2">Antrag auf nächste Sitzung verschoben</h4>
-                                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt.
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
 
                 <div id="limit" class="absolute pin-b z-50">
-                    <span class="w-full rounded-full bg-grey-light uppercase px-4 py-2 font-bold block text-center">Frist: 23 Apr 2018</span>
+                    <span class="w-full rounded-full bg-grey-light uppercase px-4 py-2 font-bold block text-center bg-{{sc['bg']}} text-{{sc['text']}}">
+                        {% if proposal['status'] != 'Erledigt' %}
+                            Frist: {{proposal['processing_period']}}
+                        {% else %}
+                            Erledigt
+                        {% endif %}
+                    </span>
                 </div>
             </div>
         </div>
+
+        <div class="mt-6">
+            <a href="" class="block text-center text-sm text-grey-lighter no-underline hover:text-white">
+                &raquo; zum Eintrag im Ratsinformationssystem
+            </a>
+        </div>
     </div>
+
+    <footer class="pt-4 pb-8 text-center">
+        <a href="/">
+            <img src="../static/images/logo.png" style="max-width: 200px;" />
+        </a>
+    </footer>
 {% endblock %}
