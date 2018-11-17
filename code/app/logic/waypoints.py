@@ -47,7 +47,11 @@ def status_color(proposal):
     if proposal['status'] == 'Erledigt':
         color = {'bg': 'green',
                  'text': 'white'}
-    # TODO evaluate by result description 
+
+    lp = len(proposal['results'])
+    if lp > 0 and proposal['results'][lp-1] and 'abgelehnt' in proposal['results'][lp-1]['result_description']:
+        color = {'bg': 'red',
+                 'text': 'white'}
 
     return color
 
