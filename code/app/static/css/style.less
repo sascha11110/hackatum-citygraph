@@ -20,32 +20,85 @@ html, body {
     background-color: #1b98d5;
 }
 
+input[type=search] {
+    margin-top: 3px;
+}
+
 #timeline {
-    left: 40px;
     height: 100%;
-    min-height: 250px;
+    min-height: 450px;
 }
 
 #line {
+    left: 106px;
     width: 4px;
     background-color: #ffe400;
 }
 
-.dot {
-    width: 22px;
-    height: 22px;
-    top: 20px;
-    left: -9px;
-    border-radius: 100%;
-    background-color: #1b98d5;
+#waypoints {
+    .waypoint {
+        min-height: 10px;
+        .date-dot {
+            width: 120px;
+            position: relative;
+            margin-top: 12px;
+            .date {
+                width: 85px;
+                text-align: right;
+                position: absolute;
+                top: 4px;
+            }
+    
+            .dot {
+                width: 24px;
+                height: 24px;
+                top: 0;
+                right: 0;
+                border-radius: 100%;
+                background-color: #1b98d5;
+            
+                > div {
+                    width: 14px;
+                    height: 14px;
+                    position: absolute;
+                    top: 5px;
+                    left: 5px;
+                    border-radius: 100%;
+                    background-color: #ffe400;
+                }
+            }
+        }
 
-    > div {
-        width: 13px;
-        height: 13px;
-        position: absolute;
-        top: 4px;
-        left: 4px;
-        border-radius: 100%;
-        background-color: #ffe400;
+        .arrow-bubble {
+            flex: 1;
+            padding-left: 19px;
+            .arrow {
+                width: 18px;
+                height: 18px;
+                top: 15px;
+                left: 10px;
+                -ms-transform: rotate(45deg);
+                -webkit-transform: rotate(45deg);
+                transform: rotate(45deg);
+            }
+            .bubble {
+                left: 19px;
+                right: 0;
+                max-width: 500px;
+                min-height: 100px;
+                .icon {
+                    width: 40px;
+                    svg {
+                        width: 28px;
+                        height: 28px;
+                    }
+                }
+            }
+        }
     }
+}
+
+#limit {
+    width: 185px;
+    left: 8px;
 }
