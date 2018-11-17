@@ -1,24 +1,23 @@
 version: '2'
 
 services:
-  couchdb:
-    image: couchdb
+  mongo:
+    image: mongo
     restart: always
 
   flask:
     build:
       context: .
       dockerfile: Dockerfile
+    links:
+      - mongo
     ports:
       - "5000:5000"
     depends_on:
-      - couchdb
+      - mongo
     restart: always
     environment:
-      - DB_DATABASE=hackatum
-      - DB_USER=hackatum
-      - DB_PASSWORD=test
-      - DB_HOST=postgres
-      - DB_PORT=5432
+      - COUCHDB_SERVER='http://couchdb:5984/',
+      - COUCHDB_DATABASE='hackatum'
     volumes:
       - './code:/code'
