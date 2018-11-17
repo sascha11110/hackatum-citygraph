@@ -73,12 +73,24 @@ def import_data():
                 pass
 
         num_proposals = mongo.db.proposals.count()
-        out = 'Es gibt jetzt ' + \
+        out_proposals = 'Es gibt jetzt ' + \
               str(num_proposals) + ' Anträge im System.'
 
-        # mongo.db.proposals.create_index('subject')
         mongo.db.proposals.create_index(
             [('subject', TEXT)])
 
-        return out
-    return 'nicht importiert'
+        with open(os.path.join(APP_STATIC, 'data/documents.json')) as f:
+            data = json.loads(f.read())
+            mongo.db.documents.remove()
+            for p in data:
+                mongo.db.documents.insert({
+                    'ris_id': p['id'],
+                    'documents': p['documents'],
+                })  
+            num_documents = mongo.db.documents.count()
+            out_documents = 'Es gibt jetzt ' + \
+                str(num_documents) + ' Dokumente im System.' 
+
+        return out_proposals + out_documents
+    return 'Imporiterung fehlgeschlagen'
+    
