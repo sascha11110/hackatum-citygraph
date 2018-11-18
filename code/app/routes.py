@@ -58,8 +58,8 @@ def import_data():
             subject = subject.replace('<br />', '')
             mongo.db.proposals.insert({
                 'ris_id': p['id'],
-                'initiator': p['application_by'],
-                'date': p['application_date'],
+                'initiator': p['proposal_by'],
+                'date': p['proposal_date'],
                 'department': p['department'],
                 'done_date': p['done_date'],
                 'editing': p['editing'],
@@ -70,9 +70,6 @@ def import_data():
                 'type': p['type'],
                 'results': p['results'],
             })
-            i += 1
-            if i > 100:
-                pass
 
         num_proposals = mongo.db.proposals.count()
         out_proposals = 'Es gibt jetzt ' + \
@@ -81,6 +78,8 @@ def import_data():
         mongo.db.proposals.create_index(
             [('subject', TEXT)])
 
+        out_documents = ''
+        '''
         with open(os.path.join(APP_STATIC, 'data/documents.json')) as f:
             data = json.loads(f.read())
             mongo.db.documents.remove()
@@ -92,7 +91,8 @@ def import_data():
             num_documents = mongo.db.documents.count()
             out_documents = 'Es gibt jetzt ' + \
                 str(num_documents) + ' Dokumente im System.' 
-
+        '''
         return out_proposals + out_documents
+
     return 'Imporiterung fehlgeschlagen'
     

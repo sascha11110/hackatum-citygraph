@@ -47,10 +47,11 @@ def assemble_waypoints(proposal):
         if i >= len(results):
             last = True
             icon = 'book'
- 
+
         rf = ''
         if 'resolution_file' in result:
             rf = result['resolution_file']
+            rf = rf.replace('/ANTRAG/', '/TOP/')
 
         waypoints.append({'date': result['result_time'],
                           'icon': icon,
